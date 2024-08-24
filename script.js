@@ -75,11 +75,12 @@ const avatars = (posters, users) => {
     .map((poster) => {
       const user = users.find((user) => user.id === poster.user_id);
       if (user) {
+        console.log(user);
         const avatar = user.avatar_template.replace(/{size}/, 30);
         const userAvatarUrl = avatar.startsWith("/user_avatar/")
           ? avatarUrl.concat(avatar)
           : avatar;
-        return `<img src="${userAvatarUrl}" alt="${user.name}" />`;
+        return `<a href="https://forum.freecodecamp.org/u/${user.username.replace(/\s/g)}" target="_blank"><img src="${userAvatarUrl}" alt="${user.name}" /></a>`;
       }
     })
     .join("");
